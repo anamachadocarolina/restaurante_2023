@@ -12,12 +12,15 @@ class View{
     private $template;
 
     public function __construct($view,$template){
-        $this->view = $view; /* Este objeto recebe a na sua view a view que o usuário passou */
+        $this->view = $view; /* Este objeto recebe na sua view a view que o usuário passou */
         $this->template = $template;
     }
 
 
     public function show(){
-        require $this->template; /*require -> carrega um arquivo mesma que ele já tenha sido carregado - Se ele não achar o arquivo ele dá erro / require_once -> carrega um arquivo apenas se le não foi carregado / include -> se ele não achar o arquivo, ele continua o código*/
+        ob_start();
+        require $this->view;
+        $view = ob_get_clean();
+        require $this->template; /*require -> carrega um arquivo mesma que ele já tenha sido carregado - Se ele não achar o arquivo ele dá erro / require_once -> carrega um arquivo apenas se ele não foi carregado / include -> se ele não achar o arquivo, ele continua o código*/
     }
 }
