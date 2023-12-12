@@ -14,11 +14,17 @@ if(isset($_GET['url'])){
 
 $router = Router::getRouterByUrl($url);
 
-if($router){
+if($router){ //Pega controller do router
     $controller = $router->getController();
-    $action = $router->getAction();
-    $controller = new $controller();
-    $controller->$action();
+    call_user_func_array(//Chama um vetor que o primeiro elemento é um novo objeto controller e o segundo é o método
+        [
+            new $controller,$router->getAction()
+        ],
+        array_values($router->getParameters())
+    );
+    // $action = $router->getAction();
+    // $controller = new $controller();
+    // $controller->$action();
 } else {
     die('page 404');
 }

@@ -4,4 +4,7 @@ use Core\Router;
 
 Router::get("/",Controllers\Home::class);
 Router::get("/produtos",Controllers\Produtos::class);
-Router::get("/produtos/5",Controllers\Produtos::class,'produto');
+Router::get("/produto/{id}/{nome_usuario}",Controllers\Produtos::class,'produto');
+
+
+"(\{[a-z0-9_]{1,}\})"; //expressao regular para encontrar algo no banco de dados.
