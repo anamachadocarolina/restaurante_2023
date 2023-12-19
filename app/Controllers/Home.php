@@ -7,7 +7,11 @@ use Core\View;
 class Home extends Controller{
     public function index()
     {
-        $view = new View('home');
+        $view = new View('home', 'main');
         $view->show();
     }
 }
+
+
+
+//$view = new View('home', 'main.template.php');

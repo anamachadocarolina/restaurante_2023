@@ -30,8 +30,6 @@ if($router){ //Pega controller do router
 }
 
 
-
-
 //echo $_GET['url']; testa se o arquivo .htaccess está funcionando
 /*use Core\View;
 
