@@ -43,11 +43,15 @@ class View{
         return (isset($this->data[$name])) ? $this->data[$name] : null;
     }
 
+    private function getTemplateConfigs(){
+        return Configs::getConfig('templates');
+    }
+
     public function show($data = [])
     {
         $data = array_merge($this->data, $data);
         extract($data);
-        ob_start();
+        $template = $this->getTemplateConfigs();
         require $this->createStringRequireView();// require $this->view
         $view = ob_get_clean();
         require $this->createStringRequireTemplate(); /*require -> carrega um arquivo mesma que ele já tenha sido carregado - Se ele não achar o arquivo ele dá erro / require_once -> carrega um arquivo apenas se ele não foi carregado / include -> se ele não achar o arquivo, ele continua o código*/
